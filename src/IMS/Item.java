@@ -1,24 +1,21 @@
 package IMS;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
 	private int itemID; // PK
     private String type;
-    private double price;
-    private String console;
-    private String medium;
-    private String album;
-    private String ageRating;
-    private String gameLength;
+    private float price;
+    private int stock;
+    private List<String> itemDetails;
     
-    public Item(int itemID, String type, double price, String console, String medium, String album, String ageRating, String gameLength) {
+    public Item(int itemID, String type, float price, int stock) {
         this.itemID = itemID;
         this.type = type;
         this.price = price;
-        this.console = console;
-        this.medium = medium;
-        this.album = album;
-        this.ageRating = ageRating;
-        this.gameLength = gameLength;
+        this.stock = stock;
+        this.itemDetails = new ArrayList<>();
     }
     
     public int getItemID() { 
@@ -41,47 +38,35 @@ public class Item {
     	return price;
     }
     
-    public void setPrice(double price) {
+    public void setPrice(float price) {
     	this.price = price;
     }
     
-    public String getConsole() { 
-    	return console; 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
     
-    public void setConsole(String console) { 
-    	this.console = console;
+    public List<String> getItemDetails() {
+        return itemDetails;
     }
-    
-    public String getMedium() { 
-    	return medium;
+
+    public void setItemDetails(List<String> itemDetails) {
+        this.itemDetails = itemDetails;
     }
-    
-    public void setMedium(String medium) { 
-    	this.medium = medium;
+
+    public void addItemDetail(String detail) {
+        this.itemDetails.add(detail);
     }
-    
-    public String getAlbum() { 
-    	return album;
+
+    public void removeItemDetail(String detail) {
+        this.itemDetails.remove(detail);
     }
-    
-    public void setAlbum(String album) { 
-    	this.album = album;
-    }
-    
-    public String getAgeRating() { 
-    	return ageRating;
-    }
-    
-    public void setAgeRating(String ageRating) {
-    	this.ageRating = ageRating; 
-    }
-    
-    public String getGameLength() { 
-    	return gameLength; 
-    }
-    
-    public void setGameLength(String gameLength) { 
-    	this.gameLength = gameLength; 
+
+    public void updateStock(int quantity) {
+        this.stock += quantity;
     }
 }
