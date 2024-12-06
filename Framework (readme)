@@ -1,0 +1,9 @@
+The idea that I have for the framework of setting up the interface is relatively simple
+A method generates an array of "Items" that we will work from; Extracting them from the database and copying them to something that the program itself is able to work with.
+The array will be loaded onto the method itself that shows the items on a frame made for it; which will follow the following structure:
+On North/Up, a toolbar that shows various tools for helping with searching; A filter that divides by Videogames, Boardgames, and Music, as a checkbox that can be had for either (And all mutually exclusive)
+Aside that, there should be a search bar, that allows you to search by titles that contain the words that you're using. A bit simplified, but it should work
+Needless to say, there should be a "Refresh" button that helps you see the result of what the filtered search would be, using those different options.
+On the middle of the page, maybe with the option of a side bar for additional details, a matrix (With a scroll bar of it's own) would display all the products that we have, in a organized way. 
+Clicking on the product should open it's product page as a pop-up, with the various details displayed in a readable manner, and a button that adds a copy of that product to the shopping cart (If a user), or that allows adding a discount (If a worker) 
+The list itself should be dynamic, but should be presented in rows of 4 items each, from left to right. If incomplete one way or another, it should follow that pattern
