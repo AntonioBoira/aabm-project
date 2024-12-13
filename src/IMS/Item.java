@@ -8,6 +8,7 @@ public class Item {
     private String type;
     private float price;
     private int stock;
+    private String imageurl;
     private List<String> itemDetails;
     
     public Item(int itemID, String type, float price, int stock) {
@@ -25,7 +26,13 @@ public class Item {
     public void setItemID(int itemID) { 
     	this.itemID = itemID;
     }
-    
+
+    public void setImageurl(String string) {
+    	this.imageurl = string;
+    }
+    public String getImageurl(){
+    	return this.imageurl;
+    }
     public String getType() { 
     	return type;
     }
