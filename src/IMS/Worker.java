@@ -1,5 +1,5 @@
 package IMS;
 
-class Worker extends Interactor {
+class Worker {
     
 }

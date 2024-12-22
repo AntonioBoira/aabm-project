@@ -1,5 +1,5 @@
 package IMS;
 
-class Managerial extends Interactor {
+class Managerial {
     
 }

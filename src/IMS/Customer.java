@@ -1,6 +1,6 @@
 package IMS;
 
-class Customer extends Interactor {
+class Customer {
 	
     public void addToCart() {
         

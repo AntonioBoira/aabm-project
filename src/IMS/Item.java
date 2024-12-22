@@ -1,29 +1,35 @@
 package IMS;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Item {
-	private int itemID; // PK
+	private String itemID; // PK
     private String type;
-    private float price;
-    private int stock;
+    private double price;
+    private String console;
+    private String medium;
+    private String album;
+    private String age;
+    private int gamelength;
+    private String description;
     private String imageurl;
-    private List<String> itemDetails;
     
-    public Item(int itemID, String type, float price, int stock) {
+    public Item(String itemID, String type, double price, String console, String medium, String album, String age, int gamelength, String description, String imageurl) {
         this.itemID = itemID;
         this.type = type;
         this.price = price;
-        this.stock = stock;
-        this.itemDetails = new ArrayList<>();
+        this.console = console;
+        this.medium = medium;
+        this.album = album;
+        this.age = age;
+        this.gamelength = gamelength;
+        this.description = description;
+        this.imageurl = imageurl;
     }
     
-    public int getItemID() { 
+    public String getItemID() { 
     	return itemID; 
     }
     
-    public void setItemID(int itemID) { 
+    public void setItemID(String itemID) { 
     	this.itemID = itemID;
     }
 
@@ -45,35 +51,57 @@ public class Item {
     	return price;
     }
     
-    public void setPrice(float price) {
+    public void setPrice(double price) {
     	this.price = price;
     }
     
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
+    public String getConsole() {
+    	return this.console;
     }
     
-    public List<String> getItemDetails() {
-        return itemDetails;
+    public void setConsole(String console) {
+    	this.console = console;
     }
 
-    public void setItemDetails(List<String> itemDetails) {
-        this.itemDetails = itemDetails;
+    public String getMedium() {
+    	return this.medium;
+    }
+    
+    public void setMedium(String medium) {
+    	this.medium = medium;
     }
 
-    public void addItemDetail(String detail) {
-        this.itemDetails.add(detail);
+    public String getAlbum() {
+    	return this.album;
     }
-
-    public void removeItemDetail(String detail) {
-        this.itemDetails.remove(detail);
+    
+    public void setAlbum(String album) {
+    	this.album = album;
     }
-
-    public void updateStock(int quantity) {
-        this.stock += quantity;
+    
+    public String getAge() {
+    	return this.age;
     }
+    
+    public void setAge(String age) {
+    	this.age = age;
+    }
+    
+    public int getGamelength() {
+    	return this.gamelength;
+    }
+    
+    public void setGamelength(int gamelength) {
+    	this.gamelength = gamelength;
+    }
+    
+    public String getDescription() {
+    	return this.description;
+    }
+    
+    public void setDescription(String description) {
+    	this.description = description;
+    
+    }
+    
 }
