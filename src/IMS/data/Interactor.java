@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.Properties;
 
 import IMS.*;
-import business.Usuario.UsuarioDTO;
 
 public class Interactor extends DAO{
 
