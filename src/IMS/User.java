@@ -1,30 +1,23 @@
 package IMS;
 
-public class Worker {
-    /*WORKERID VARCHAR(35) PRIMARY KEY, 
-	NAM VARCHAR(35), 
-	SURNAME VARCHAR(35), 
-	WORKROLE VARCHAR(35),
-	PHONENUM VARCHAR(35),
-	WEMAIL VARCHAR(35)
-	FOREIGN KEY (LOCATIONID) REFERENCES LOCAT LOCATIONID*/
-	
+public class User {
+
 	private String id; //PK
 	private String name;
 	private String surname;
-	private String role;
+	private String address;
+	private String bank;
 	private String phone;
 	private String email;
-	private String location; //FK -> LOCATION
 	
-	public Worker(String id, String name, String surname, String role, String phone, String email, String location) {
+	public User(String id, String name, String surname, String address, String bank, String phone, String email) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
-		this.role = role;
+		this.address = address;
+		this.bank = bank;
 		this.phone = phone;
 		this.email = email;
-		this.location = location;
 	}
 	
 	public String getid() {
@@ -51,12 +44,20 @@ public class Worker {
 		this.surname = surname;
 	}
 	
-	public String getrole() {
-		return this.role;
+	public String getaddress() {
+		return this.address;
 	}
 	
-	public void setrole(String role) {
-		this.role = role;
+	public void setaddress(String address) {
+		this.address = address;
+	}
+	
+	public String getbank() {
+		return this.bank;
+	}
+	
+	public void setbank(String bank) {
+		this.bank = bank;
 	}
 	
 	public String getphone() {
@@ -75,11 +76,4 @@ public class Worker {
 		this.email = email;
 	}
 	
-	public String getlocation() {
-		return this.location;
-	}
-	
-	public void setlocation(String location) {
-		this.location = location;
-	}
 }
