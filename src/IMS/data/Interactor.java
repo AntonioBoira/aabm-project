@@ -274,11 +274,6 @@ public class Interactor extends DAO{
 	     }
 	}
 	
-	public int trackTransactions() {
-	     
-		return 0;
-	}
-	
 	public void addItemLocation(Stock s) {
 		try {
 			Connection con = getConnection();
@@ -337,5 +332,107 @@ public class Interactor extends DAO{
 	    	 close();
 	    	 System.out.println(e);
 	     }
+	}
+	
+	public void addOrder(Order order) {
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = con.prepareStatement(prop.getProperty("create-order"), PreparedStatement.RETURN_GENERATED_KEYS);
+        	ps.setString(1, order.getid());
+        	ps.setString(2, order.getcustomer());
+        	ps.setDouble(3, order.getprice());
+        	ps.setString(4, order.gettype());
+        	ps.setDate(5, Date.valueOf(order.getdate()));
+            ps.executeUpdate();
+		} catch (SQLException e) {
+            close();
+            System.out.println(e);
+        }
+		
+		for(int i=0; i<order.getitems().size(); i++) {
+			try {
+				Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(prop.getProperty("product-order"), PreparedStatement.RETURN_GENERATED_KEYS);
+	        	ps.setString(1, order.getid());
+	        	ps.setString(2, order.getitems().get(i));
+	            ps.executeUpdate();
+			} catch (SQLException e) {
+	            close();
+	            System.out.println(e);
+	        }
+		}
+	}
+	
+	public ArrayList<Order> listOrders(){
+		ArrayList<Order> orders = new ArrayList<Order>();
+		ArrayList<String> items = new ArrayList<String>();
+		
+		try {
+	    	 Connection con = getConnection();
+	    	 PreparedStatement ps = con.prepareStatement(prop.getProperty("list-order"), PreparedStatement.RETURN_GENERATED_KEYS);
+			 ResultSet rs = ps.executeQuery();
+			 while (rs.next()) {
+				 orders.add(new Order(rs.getString("ORDERID"), rs.getString("CUSTOMERID"), rs.getDouble("ORDERPRICE"), rs.getString("TYPE"), rs.getDate("ORDERDATE").toLocalDate(), items));
+			 }
+	     } catch (SQLException e) {
+	    	 close();
+	    	 System.out.println(e);
+	     }
+		
+		for(int i=0; i<orders.size(); i++) {
+			items = new ArrayList<String>();
+			try {
+		    	 Connection con = getConnection();
+		    	 PreparedStatement ps = con.prepareStatement(prop.getProperty("list-products-order"), PreparedStatement.RETURN_GENERATED_KEYS);
+		    	 ps.setString(1, orders.get(i).getid());
+		    	 ResultSet rs = ps.executeQuery();
+				 while (rs.next()) {
+					 items.add(rs.getString("ITEMID"));
+				 }
+		     } catch (SQLException e) {
+		    	 close();
+		    	 System.out.println(e);
+		     }
+			orders.get(i).setitems(items);
+		}
+		
+		return orders;	
+	}
+
+	public ArrayList<Order> listOrdersCustomer(String customer){
+		ArrayList<Order> orders = new ArrayList<Order>();
+		ArrayList<String> items = new ArrayList<String>();
+		
+		try {
+	    	 Connection con = getConnection();
+	    	 PreparedStatement ps = con.prepareStatement(prop.getProperty("list-ocustomer"), PreparedStatement.RETURN_GENERATED_KEYS);
+	    	 ps.setString(1, customer);
+	    	 ResultSet rs = ps.executeQuery();
+			 while (rs.next()) {
+				 orders.add(new Order(rs.getString("ORDERID"), rs.getString("CUSTOMERID"), rs.getDouble("ORDERPRICE"), rs.getString("TYPE"), rs.getDate("ORDERDATE").toLocalDate(), items));
+			 }
+	     } catch (SQLException e) {
+	    	 close();
+	    	 System.out.println(e);
+	     }
+		
+		for(int i=0; i<orders.size(); i++) {
+			items = new ArrayList<String>();
+			try {
+		    	 Connection con = getConnection();
+		    	 PreparedStatement ps = con.prepareStatement(prop.getProperty("list-products-order"), PreparedStatement.RETURN_GENERATED_KEYS);
+		    	 ps.setString(1, orders.get(i).getid());
+		    	 ResultSet rs = ps.executeQuery();
+				 while (rs.next()) {
+					 items.add(rs.getString("ITEMID"));
+				 }
+		     } catch (SQLException e) {
+		    	 close();
+		    	 System.out.println(e);
+		     }
+			orders.get(i).setitems(items);
+		}
+		
+		return orders;	
 	}
 }
